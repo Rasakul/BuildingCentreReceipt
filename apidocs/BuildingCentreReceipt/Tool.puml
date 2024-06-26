@@ -1,0 +1,21 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>Tool\n<size:10>BuildingCentreReceipt" as BuildingCentreReceipt.Tool [[Tool.html]] {
+        {static} +SHIPPING_COSTS_PER_ITEM: int
+        -count: int
+        +Tool(String, double, int)
+        +Tool(Tool)
+        +calculatePrice(): double
+    }
+
+    abstract class "<size:14>BuildingCentreProductBase\n<size:10>BuildingCentreReceipt" as BuildingCentreReceipt.BuildingCentreProductBase [[BuildingCentreProductBase.html]] {
+        {abstract} +calculatePrice(): double
+    }
+
+    BuildingCentreReceipt.BuildingCentreProductBase <|-- BuildingCentreReceipt.Tool
+
+    center footer UMLDoclet 2.1.0, PlantUML %version()
+@enduml

@@ -1,0 +1,11 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    interface "<size:14>SelfFetchable\n<size:10>BuildingCentreReceipt" as BuildingCentreReceipt.SelfFetchable [[SelfFetchable.html]] {
+        {abstract} +fetchFrom(): String
+    }
+
+    center footer UMLDoclet 2.1.0, PlantUML %version()
+@enduml

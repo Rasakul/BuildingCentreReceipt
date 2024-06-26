@@ -1,0 +1,16 @@
+@startuml
+    skinparam backgroundcolor transparent
+    set namespaceSeparator none
+    hide circle
+    hide empty fields
+    hide empty methods
+
+    BuildingCentreReceipt --> java.lang
+    BuildingCentreReceipt --> java.util
+
+    ' Package links
+    class "BuildingCentreReceipt" [[BuildingCentreReceipt/package-summary.html]] {
+    }
+
+    center footer UMLDoclet 2.1.0, PlantUML %version()
+@enduml

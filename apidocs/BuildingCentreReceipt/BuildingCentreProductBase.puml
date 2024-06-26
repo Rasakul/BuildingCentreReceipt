@@ -1,0 +1,25 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    abstract class "<size:14>BuildingCentreProductBase\n<size:10>BuildingCentreReceipt" as BuildingCentreReceipt.BuildingCentreProductBase [[BuildingCentreProductBase.html]] {
+        #price: double
+        #name: String
+        ~BuildingCentreProductBase(BuildingCentreProductBase)
+        ~BuildingCentreProductBase(String, double)
+        +getName(): String
+        {abstract} +calculatePrice(): double
+        +compareTo(BuildingCentreProductBase): int
+        +getPricePerUnit(): double
+        +price(double): BuildingCentreProductBase
+    }
+
+    interface "<size:14>Comparable\n<size:10>java.lang" as java.lang.Comparable<BuildingCentreProductBase> {
+        {abstract} +compareTo(BuildingCentreProductBase): int
+    }
+
+    java.lang.Comparable <|.. BuildingCentreReceipt.BuildingCentreProductBase
+
+    center footer UMLDoclet 2.1.0, PlantUML %version()
+@enduml

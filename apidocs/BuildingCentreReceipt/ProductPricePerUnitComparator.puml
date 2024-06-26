@@ -1,0 +1,17 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>ProductPricePerUnitComparator\n<size:10>BuildingCentreReceipt" as BuildingCentreReceipt.ProductPricePerUnitComparator [[ProductPricePerUnitComparator.html]] {
+        +compare(BuildingCentreProductBase, BuildingCentreProductBase): int
+    }
+
+    interface "<size:14>Comparator\n<size:10>java.util" as java.util.Comparator<BuildingCentreProductBase> {
+        {abstract} +compare(BuildingCentreProductBase, BuildingCentreProductBase): int
+    }
+
+    java.util.Comparator <|.. BuildingCentreReceipt.ProductPricePerUnitComparator
+
+    center footer UMLDoclet 2.1.0, PlantUML %version()
+@enduml

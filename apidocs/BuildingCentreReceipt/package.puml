@@ -1,0 +1,108 @@
+@startuml
+    namespace BuildingCentreReceipt {
+
+        abstract class BuildingCentreProductBase [[BuildingCentreProductBase.html]] {
+            #price: double
+            #name: String
+            ~BuildingCentreProductBase(BuildingCentreProductBase)
+            ~BuildingCentreProductBase(String, double)
+            +getName(): String
+            {abstract} +calculatePrice(): double
+            +compareTo(BuildingCentreProductBase): int
+            +getPricePerUnit(): double
+            +price(double): BuildingCentreProductBase
+        }
+
+        class ProductPricePerUnitComparator [[ProductPricePerUnitComparator.html]] {
+            +compare(BuildingCentreProductBase, BuildingCentreProductBase): int
+        }
+
+        class Tool [[Tool.html]] {
+            {static} +SHIPPING_COSTS_PER_ITEM: int
+            -count: int
+            +Tool(String, double, int)
+            +Tool(Tool)
+            +calculatePrice(): double
+        }
+
+        class Main [[Main.html]] {
+            {static} +main(String[]): void
+            {static} -printReceipt(List<BuildingCentreProductBase>, String): void
+            {static} -receiptText(List<BuildingCentreProductBase>): String
+        }
+
+        class Material [[Material.html]] {
+            {static} +MAXIMUM_AMOUNT_TO_DELIVER: int
+            -selfFetchStorage: String
+            -count: int
+            +Material(String, String, double, int)
+            +Material(Material)
+            +fetchFrom(): String
+            +calculatePrice(): double
+        }
+
+        interface SelfFetchable [[SelfFetchable.html]] {
+            {abstract} +fetchFrom(): String
+        }
+
+        class FullTextMatcher [[FullTextMatcher.html]] {
+            -pattern: String
+            +FullTextMatcher(String)
+            +matches(BuildingCentreProductBase): boolean
+        }
+
+        class CraftsmanSupport [[CraftsmanSupport.html]] {
+            -hours: int
+            +CraftsmanSupport(String, int, double)
+            -setHours(int): void
+            +calculatePrice(): double
+        }
+
+        class ProductNameComparator [[ProductNameComparator.html]] {
+            +compare(BuildingCentreProductBase, BuildingCentreProductBase): int
+        }
+
+        interface Matcher<T> [[Matcher.html]] {
+            {abstract} +matches(T): boolean
+        }
+
+        java.lang.Comparable <|.. BuildingCentreProductBase
+        java.util.Comparator <|.. ProductPricePerUnitComparator
+        BuildingCentreProductBase <|-- Tool
+        BuildingCentreProductBase <|-- Material
+        SelfFetchable <|.. Material
+        Matcher <|.. FullTextMatcher
+        BuildingCentreProductBase <|-- CraftsmanSupport
+        java.util.Comparator <|.. ProductNameComparator
+    }
+
+    namespace java.lang {
+        interface Comparable<T> {
+            {abstract} +compareTo(T): int
+        }
+    }
+
+    namespace java.util {
+        interface Comparator<T> {
+            {abstract} +compare(T, T): int
+            +reversed(): Comparator<T>
+            +thenComparing(Comparator<? super T>): Comparator<T>
+            +thenComparing(Function<? super T, ? extends U>, Comparator<? super U>): Comparator<T>
+            +thenComparing(Function<? super T, ? extends Comparable<? super U>>): Comparator<T>
+            +thenComparingInt(ToIntFunction<? super T>): Comparator<T>
+            +thenComparingLong(ToLongFunction<? super T>): Comparator<T>
+            +thenComparingDouble(ToDoubleFunction<? super T>): Comparator<T>
+            {static} +reverseOrder(): Comparator<T extends Comparable<? super T>>
+            {static} +naturalOrder(): Comparator<T extends Comparable<? super T>>
+            {static} +nullsFirst(Comparator<? super T>): Comparator<T>
+            {static} +nullsLast(Comparator<? super T>): Comparator<T>
+            {static} +comparing(Function<? super T, ? extends U>, Comparator<? super U>): Comparator<T>
+            {static} +comparing(Function<? super T, ? extends Comparable<? super U>>): Comparator<T>
+            {static} +comparingInt(ToIntFunction<? super T>): Comparator<T>
+            {static} +comparingLong(ToLongFunction<? super T>): Comparator<T>
+            {static} +comparingDouble(ToDoubleFunction<? super T>): Comparator<T>
+        }
+    }
+
+    center footer UMLDoclet 2.1.0, PlantUML %version()
+@enduml

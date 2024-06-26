@@ -1,0 +1,20 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>CraftsmanSupport\n<size:10>BuildingCentreReceipt" as BuildingCentreReceipt.CraftsmanSupport [[CraftsmanSupport.html]] {
+        -hours: int
+        +CraftsmanSupport(String, int, double)
+        -setHours(int): void
+        +calculatePrice(): double
+    }
+
+    abstract class "<size:14>BuildingCentreProductBase\n<size:10>BuildingCentreReceipt" as BuildingCentreReceipt.BuildingCentreProductBase [[BuildingCentreProductBase.html]] {
+        {abstract} +calculatePrice(): double
+    }
+
+    BuildingCentreReceipt.BuildingCentreProductBase <|-- BuildingCentreReceipt.CraftsmanSupport
+
+    center footer UMLDoclet 2.1.0, PlantUML %version()
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>Main\n<size:10>BuildingCentreReceipt" as BuildingCentreReceipt.Main [[Main.html]] {
+        {static} +main(String[]): void
+        {static} -printReceipt(List<BuildingCentreProductBase>, String): void
+        {static} -receiptText(List<BuildingCentreProductBase>): String
+    }
+
+    center footer UMLDoclet 2.1.0, PlantUML %version()
+@enduml

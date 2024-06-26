@@ -1,0 +1,19 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>FullTextMatcher\n<size:10>BuildingCentreReceipt" as BuildingCentreReceipt.FullTextMatcher [[FullTextMatcher.html]] {
+        -pattern: String
+        +FullTextMatcher(String)
+        +matches(BuildingCentreProductBase): boolean
+    }
+
+    interface "<size:14>Matcher\n<size:10>BuildingCentreReceipt" as BuildingCentreReceipt.Matcher<BuildingCentreProductBase> [[Matcher.html]] {
+        {abstract} +matches(BuildingCentreProductBase): boolean
+    }
+
+    BuildingCentreReceipt.Matcher <|.. BuildingCentreReceipt.FullTextMatcher
+
+    center footer UMLDoclet 2.1.0, PlantUML %version()
+@enduml

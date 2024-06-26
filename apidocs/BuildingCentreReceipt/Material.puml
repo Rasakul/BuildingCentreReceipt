@@ -1,0 +1,27 @@
+@startuml
+    set namespaceSeparator none
+    hide empty fields
+    hide empty methods
+
+    class "<size:14>Material\n<size:10>BuildingCentreReceipt" as BuildingCentreReceipt.Material [[Material.html]] {
+        {static} +MAXIMUM_AMOUNT_TO_DELIVER: int
+        -selfFetchStorage: String
+        -count: int
+        +Material(String, String, double, int)
+        +Material(Material)
+        +fetchFrom(): String
+        +calculatePrice(): double
+    }
+
+    abstract class "<size:14>BuildingCentreProductBase\n<size:10>BuildingCentreReceipt" as BuildingCentreReceipt.BuildingCentreProductBase [[BuildingCentreProductBase.html]] {
+        {abstract} +calculatePrice(): double
+    }
+    interface "<size:14>SelfFetchable\n<size:10>BuildingCentreReceipt" as BuildingCentreReceipt.SelfFetchable [[SelfFetchable.html]] {
+        {abstract} +fetchFrom(): String
+    }
+
+    BuildingCentreReceipt.BuildingCentreProductBase <|-- BuildingCentreReceipt.Material
+    BuildingCentreReceipt.SelfFetchable <|.. BuildingCentreReceipt.Material
+
+    center footer UMLDoclet 2.1.0, PlantUML %version()
+@enduml
